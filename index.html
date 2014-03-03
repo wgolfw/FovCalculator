@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <title>Fov WebApp</title>
+
+        <!-- Bootstrap  <link href="css/bootstrap.theme.min.css" rel="stylesheet"> -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+
+
+            html, body {
+
+                min-height:100%;
+                height:100%;
+
+            }
+
+            body {
+                background-image:url('images/grey_wash_wall.png'); 
+            }
+            .status-bar-ios {
+                height:20px;
+                width:100%; 
+                position: fixed;
+
+                z-index:9;
+                display:none;
+            }
+
+            .select-fov {
+                font-weight:bold;
+            }
+
+
+
+            .modal-dialog {
+                margin-top:30px;
+            }
+
+            .btn:active, .btn.active {
+                box-shadow: none !important;
+            }
+
+            .navbar-brand {
+                color:#FFF !important; 
+            }
+            /* Swipe 2 required styles */
+
+            .swipe {
+                overflow: hidden;
+                visibility: hidden;
+                position: relative;
+
+                padding-top:50px;
+                height:300px;
+                height:100%;
+
+            }
+            .swipe-wrap {
+                overflow: hidden;
+                position: relative;
+                height:100%;
+                min-height:100%;
+                display:block;
+            }
+            .swipe-wrap > div {
+                float:left;
+                width:100%;
+                position: relative;
+                height:100%;
+                background-color:#FFF;
+                display:block;
+                text-align:center;
+                overflow:auto;
+                padding-bottom:50px;
+            }
+
+            .swipe-control {
+                position:absolute;
+                bottom:0;
+                left:50%;
+                margin-left: -56px;
+                margin-bottom:70px;
+            }
+
+
+            /* END required styles */
+
+            .page-content {
+                margin-top:20px;
+            }
+
+            .menu-footer {
+                padding:0;
+            }
+
+
+            .menu-footer .nav > li > a:link,  .menu-footer .nav > li > a:visited {
+                color:#666;
+            }
+            .menu-footer .nav > li > a:hover {
+                color:#FFF !important;
+                background-color:inherit !important;
+            }
+
+            .menu-footer .menu-footer-items {
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+
+
+
+
+
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="status-bar-ios   btn-primary"></div>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle show-fav" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">FOV CALCULATOR</a>
+                </div>
+
+
+
+                <div class="navbar-collapse collapse" style="display:none;">
+
+                    <ul class="nav navbar-nav ">
+                        <li><a href="javascript:void(0);" class="btn-lens-set" data-toggle="modal" data-target="#modal-lens-set">Lens Set</a></li>
+                        <li class="dropdown" style="display:none;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lens Set <b class="caret"></b></a>
+                            <ul class="dropdown-menu fov-menu-x">
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse style="margin-top:80px"-->
+            </div>
+        </div>
+
+
+
+
+        <div id='mySwipe'  class='swipe'>
+            <div class='swipe-wrap'>
+                <!-- PAGE 1 -->
+                <div>
+                    <div class="container page-content" role="main"   > 
+
+                        <div class="row">
+                            <form role="form">
+                                <div class="col-xs-6 col-md-6 col-1">
+                                    <div class="form-group">
+                                        <select class="form-control select-fov btn-primary" id="fov-source">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6 col-2">
+                                    <div class="form-group">
+                                        <select class="form-control select-fov btn-warning" id="fov-destination" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <button type="button" class="btn btn-primary btn-block btn-add-action" onClick="javascript:insertRow()"> <span class="glyphicon glyphicon-plus"></span> Lens </button>
+                                </div>
+                                <div class="col-xs-12 col-md-12" style="margin-top:10px;">
+                                    <button type="button" class="btn btn-primary btn-block btn-edit-action" onClick="javascript:editAction()"> <span class="glyphicon glyphicon-minus"></span> Delete </button>
+                                </div>
+                                <div class="col-xs-12 col-md-12" style="margin-top:10px;">
+                                    <button type="button" class="btn btn-success btn-block btn-save-action" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-floppy-disk"></span> Save </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container bottom" style="margin-top:20px">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 text-center">
+                                <p style="margin-top:-13px;">Support: <a href="mailto:danai@bluepano.com?subject=Fov Calculator"> danai@bluepano.com</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END OF: PAGE 1 -->
+
+
+                <!-- PAGE 2 -->
+                <div>
+                    <div class="page-content">
+                        Page 2 :))
+                    </div>
+                </div>
+                <!-- END OF: PAGE 2 -->
+
+            </div>
+
+            <div style='text-align:center;display:none;' class="swipe-control">
+                <button type="button" class="btn btn-primary" onclick='mySwipe.prev()'>prev</button> 
+                <button type="button" class="btn btn-primary" onclick='mySwipe.next()'>next</button>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" >
+            <div class="container-fluid menu-footer">
+                <ul class="nav nav-pills menu-footer-items">
+                    <li class=""><a href="javascript:mySwipe.prev()" style="color:#FFF">Fov</a></li>
+                    <li><a href="javascript:mySwipe.next()">About</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- LENS SET Modal -->
+        <div class="modal fade" id="modal-lens-set" 
+             tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Lens Set</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group fov-menu"> </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm btn-load" data-dismiss="modal">Load</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-edit-fav">Delete</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Save Lens Set</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" placeholder="Lens Set Name"  id="fovset-name" class="form-control"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onClick="javascript:saveFovSet();">Save</button>
+                        <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-1.11.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/database.js"></script>
+        <script src="js/fov-calculator.js"></script>
+        <script src="js/general.js"></script>
+
+        <script src="js/swipe.js"></script>
+
+
+
+        <script>
+
+
+                            function loadFooterMenu() {
+                                var footerWidth = $('.menu-footer').width();
+                                var itemsLen = $('.menu-footer .menu-footer-items li').length;
+                                var liBoxWidth = footerWidth / itemsLen;
+                                 
+                                $('.menu-footer .menu-footer-items li').width(liBoxWidth).css({
+                                    'margin-left': 0,
+                                    'text-align': 'center',
+                                    'margin-top': 5,
+                                });
+                                $('.menu-footer .menu-footer-items').css({
+                                    'display': 'inline'
+                                });
+                            }
+
+                            var elem = document.getElementById('mySwipe');
+                            window.mySwipe = Swipe(elem, {
+                                startSlide: 0,
+                                speed: 400,
+                                auto: false,
+                                continuous: false,
+                                disableScroll: false,
+                                stopPropagation: false,
+                                callback: function(index, elem) {
+                                    
+                                      $('.menu-footer .menu-footer-items li a').css({
+                                          'color': '#666',
+                                      });
+                                     $li = $('.menu-footer .menu-footer-items li').eq(index).find('a').css({
+                                         'color': '#FFF',
+                                     });
+                                  //   console.log($li);
+                                },
+                                transitionEnd: function(index, elem) {
+                                }
+                            });
+
+                            $(function() {
+                                loadFooterMenu();
+                            });
+                            
+                            $(window).resize(function(){
+                                loadFooterMenu();
+                            });
+        </script>
+
+        <script src="phonegap.js"></script>
+    </body>
+</html>

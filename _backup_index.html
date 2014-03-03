@@ -1,0 +1,111 @@
+ 
+
+<div class="container" role="main"  style="margin-top:70px;">
+
+
+
+
+
+    <!-- LENS SET Modal -->
+    <div class="modal fade" id="modal-lens-set" 
+         tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">Lens Set</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="list-group fov-menu">
+
+                    </div>   
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm btn-load" data-dismiss="modal">Load</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-edit-fav">Delete</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="myModalLabel">Save Lens Set</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Lens Set Name"  id="fovset-name" class="form-control"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="javascript:saveFovSet();">Save</button>
+                    <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <form role="form">
+            <div class="col-xs-6 col-md-6 col-1">
+                <div class="form-group"> 
+                    <select class="form-control select-fov btn-primary" id="fov-source"></select> 
+                </div>
+            </div>
+
+
+
+
+            <div class="col-xs-6 col-md-6 col-2">
+                <div class="form-group"> 
+                    <select class="form-control select-fov btn-warning" id="fov-destination" >
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-12">
+                <button type="button" class="btn btn-primary btn-block btn-add-action" onclick="javascript:insertRow()">
+                    <span class="glyphicon glyphicon-plus"></span>  Lens
+                </button>
+            </div>
+
+            <div class="col-xs-12 col-md-12" style="margin-top:10px;">
+                <button type="button" class="btn btn-primary btn-block btn-edit-action" onclick="javascript:editAction()">
+                    <span class="glyphicon glyphicon-minus"></span>  Delete
+                </button>
+            </div>
+
+
+            <div class="col-xs-12 col-md-12" style="margin-top:10px;">
+                <button type="button" class="btn btn-success btn-block btn-save-action" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Save
+                </button>
+            </div>
+        </form> 
+    </div>
+
+</div>
+
+
+
+<div class="container bottom" style="margin-top:20px">
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+            <p>Support: <a href="mailto:danai@bluepano.com?subject=Fov Calculator"> danai@bluepano.com</a>.</p> 
+        </div> 
+    </div>
+</div>
